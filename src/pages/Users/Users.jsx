@@ -60,7 +60,6 @@ const Users = () => {
       // const { data } = await axios.get("http://localhost:5432/getUsers");
       // Hosting
       const { data } = await axios.get("/getUsers");
-
       setUsers(data);
     } catch {
       console.error();
