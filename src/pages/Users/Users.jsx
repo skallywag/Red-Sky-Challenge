@@ -25,7 +25,6 @@ const Users = () => {
         // setUsers(response.data.data)
         // localStorage.setItem("users", JSON.stringify(response.data));
         // const { data } = await axios.get("http://localhost:5432/getUsers");
-        // Hosting
         const { data } = await axios.get("/getUsers");
         setUsers(data);
       } catch {
@@ -58,7 +57,6 @@ const Users = () => {
   const getUsers = async () => {
     try {
       // const { data } = await axios.get("http://localhost:5432/getUsers");
-      // Hosting
       const { data } = await axios.get("/getUsers");
       setUsers(data);
     } catch {
@@ -105,7 +103,7 @@ const Users = () => {
         </div>
       )}
       <h1 className="users-title">Red Sky Coding Challenge</h1>
-      <div className="line-break" />
+      <div className="line-break"></div>
       <div className="wrapper">
         <div className="createBtnCtn">
           <Button
