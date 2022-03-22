@@ -51,10 +51,11 @@ const EditUserModal = ({
 
     onSubmit: async (values, { resetForm }) => {
       try {
-        const response = await axios.put(
-          `http://localhost:5432/updateUser/`,
-          values
-        );
+        // const response = await axios.put(
+        //   `http://localhost:5432/updateUser/`,
+        //   values
+        // );
+        const response = await axios.put(`/updateUser/`, values);
         console.log(response);
         setShowEditModal(false);
         handleToast("User Updated!");

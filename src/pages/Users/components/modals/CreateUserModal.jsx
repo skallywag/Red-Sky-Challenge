@@ -41,10 +41,11 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
     },
     onSubmit: async (values, { resetForm }) => {
       try {
-        const response = await axios.post(
-          "http://localhost:5432/createUser",
-          values
-        );
+        // const response = await axios.post(
+        //   "http://localhost:5432/createUser",
+        //   values
+        // );
+        const response = await axios.post("/createUser", values);
         setShowCreateModal(false);
         handleToast("USER CREATED!");
         getUsers();

@@ -24,7 +24,9 @@ const Users = () => {
         // const response = await axios.get("https://reqres.in/api/users?page=2");
         // setUsers(response.data.data)
         // localStorage.setItem("users", JSON.stringify(response.data));
-        const { data } = await axios.get("http://localhost:5432/getUsers");
+        // const { data } = await axios.get("http://localhost:5432/getUsers");
+        // Hosting
+        const { data } = await axios.get("/getUsers");
         setUsers(data);
       } catch {
         console.error();
@@ -55,7 +57,10 @@ const Users = () => {
 
   const getUsers = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5432/getUsers");
+      // const { data } = await axios.get("http://localhost:5432/getUsers");
+      // Hosting
+      const { data } = await axios.get("/getUsers");
+
       setUsers(data);
     } catch {
       console.error();
@@ -64,9 +69,10 @@ const Users = () => {
 
   const deleteUser = async () => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5432/deleteUser/${modalId}`
-      );
+      // const response = await axios.delete(
+      //   `http://localhost:5432/deleteUser/${modalId}`
+      // );
+      const response = await axios.delete(`/deleteUser/${modalId}`);
       console.log(response);
       setShowDelete(false);
       getUsers();
