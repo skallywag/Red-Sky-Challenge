@@ -8,9 +8,9 @@
   font-size: 48px;
   line-height: 58px;
   font-family: "Marcellus";
-  font-style: normal;
   padding: 10px;
   border-bottom: 1px solid $gray;
+  margin-bottom: 25px;
 }
 .toast-ctn {
   display: flex;
@@ -24,11 +24,6 @@
     color: $white;
   }
 }
-// .line-break {
-//   border: 0.5px solid $gray;
-//   border-bottom-width: 100%;
-//   margin-bottom: 20px;
-// }
 .createBtnCtn {
   display: flex;
   justify-content: flex-end;
