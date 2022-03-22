@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../../../../shared/Components/button/Button";
-import ConfirmDelete from "../../modals/ConfirmDelete";
 import "./UserList.scss";
 // import { userData } from "./userData.js";
 
@@ -8,8 +7,8 @@ const UserList = ({ users, openModal }) => {
   return (
     <div className="container">
       <div className="user-list-ctn">
-        <div className="table-title">
-          <h2>USER LIST</h2>
+        <div className="title-ctn">
+          <h2 className="table-title">USER LIST</h2>
         </div>
         <table className="user-table">
           <thead className="table-head">
@@ -40,12 +39,13 @@ const UserList = ({ users, openModal }) => {
                       <Button
                         text="EDIT"
                         onClick={() => openModal(user.id, "edit")}
+                        variant="edit-btn"
                       />
                       <Button
                         text="DELETE"
+                        variant="delete-btn"
                         onClick={() => {
                           openModal(user.id);
-                          // handleToast("User Deleted");
                         }}
                       />
                     </td>

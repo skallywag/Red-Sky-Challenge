@@ -33,7 +33,7 @@ module.exports = {
         last_name = '${lastName}',
         email = '${email}',
         avatar = '${avatar}'
-  
+        
         WHERE '${modalId}' = id`
     );
     res.status(200).send(response[0][0]);
@@ -43,6 +43,6 @@ module.exports = {
     const response = await sequelize.query(
       `DELETE FROM users WHERE id = '${id}'`
     );
-    res.status(200).send("user deleted");
+    res.status(200).send(response);
   },
 };

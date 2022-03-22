@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import Button from "../../../shared/Components/button/Button";
+import Button from "../../../../shared/Components/button/Button";
 import "./Modal.scss";
 import axios from "axios";
 
@@ -8,10 +8,38 @@ const EditUserModal = ({
   setShowEditModal,
   showEditModal,
   handleToast,
-  openEditModal,
   getUsers,
   modalId,
 }) => {
+  const validate = (values) => {
+    const errors = {};
+    const emailRegex = new RegExp(
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g
+    );
+    if (!values.firstName) {
+      errors.firstName = "*Required";
+    } else if (values.firstName.length < 3) {
+      errors.firstName = "First Name must be more than 3 characters";
+    }
+    if (!values.lastName) {
+      errors.lastName = "*Required";
+    } else if (values.lastName.length < 3) {
+      errors.firstName = "Last Name must be more than 3 characters";
+    }
+
+    if (!values.email) {
+      errors.email = "*Required";
+    } else if (!emailRegex.test(values.email)) {
+      errors.email = "Please enter a valid email";
+    }
+    if (!values.avatar) {
+      errors.avatar = "*Required";
+    } else if (!values.avatar) {
+      errors.avatar = "Pleast enter avatar link";
+    }
+
+    return errors;
+  };
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -27,6 +55,7 @@ const EditUserModal = ({
           `http://localhost:5432/updateUser/`,
           values
         );
+        console.log(response);
         setShowEditModal(false);
         handleToast("User Updated!");
         getUsers();
@@ -35,6 +64,7 @@ const EditUserModal = ({
       }
       resetForm({ values: "" });
     },
+    validate,
   });
   return (
     <div className="overLay">
@@ -45,20 +75,28 @@ const EditUserModal = ({
             <label className="modal-label" htmlFor="firstName">
               First Name
             </label>
-            <input
-              value={formik.values.firstName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              id="firstName"
-              type="text"
-              className="modal-input"
-            />
+            <div>
+              {formik.errors.firstName && (
+                <span className="input-error">{formik.errors.firstName}</span>
+              )}
+              <input
+                value={formik.values.firstName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                id="firstName"
+                type="text"
+                className="modal-input"
+              />
+            </div>
           </div>
 
           <label className="modal-label" htmlFor="lastName">
             Last Name
           </label>
           <div>
+            {formik.errors.lastName && (
+              <span className="input-error">{formik.errors.lastName}</span>
+            )}
             <input
               value={formik.values.lastName}
               onChange={formik.handleChange}
@@ -73,6 +111,9 @@ const EditUserModal = ({
             Email Address
           </label>
           <div>
+            {formik.errors.email && (
+              <span className="input-error">{formik.errors.email}</span>
+            )}
             <input
               value={formik.values.email}
               onChange={formik.handleChange}
@@ -87,6 +128,9 @@ const EditUserModal = ({
             Avatar Image Link
           </label>
           <div>
+            {formik.errors.avatar && (
+              <span className="input-error">{formik.errors.avatar}</span>
+            )}
             <input
               value={formik.values.avatar}
               onChange={formik.handleChange}
@@ -99,12 +143,12 @@ const EditUserModal = ({
           <div className="form-btns">
             <Button
               text="CANCEL"
-              variant="outline-btn"
+              variant="cancel-btn"
               showEditModal={showEditModal}
               setShowEditModal={setShowEditModal}
               onClick={() => setShowEditModal(false)}
             />
-            <Button text="SAVE" type="submit" />
+            <Button text="SAVE" type="submit" variant="small-btn" />
           </div>
         </form>
       </div>

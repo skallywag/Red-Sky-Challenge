@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-.table-title {
+.title-ctn {
   display: flex;
   align-items: center;
   background: $primary;
@@ -23,6 +23,9 @@
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
+  .table-title {
+    color: #ffffff;
+  }
 }
 
 .avatar {

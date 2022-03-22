@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Button from "../../shared/Components/button/Button";
 import UserList from "./components/UserList/UserList";
-import CreateUserModal from "./modals/CreateUserModal";
-import EditUserModal from "./modals/EditUserModal";
-import ConfirmDelete from "./modals/ConfirmDelete";
+import CreateUserModal from "./components/modals/CreateUserModal";
+import EditUserModal from "./components/modals/EditUserModal";
+import ConfirmDelete from "./components/modals/ConfirmDelete";
 import "./Users.scss";
 
 const Users = () => {
@@ -14,6 +14,8 @@ const Users = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [modalId, setModalId] = useState(null);
   const [toast, setToast] = useState("");
+  const ref = useRef();
+  useOnClickOutside(ref, () => setShowDelete(false));
 
   useEffect(() => {
     async function getInitialUsers() {
@@ -28,7 +30,25 @@ const Users = () => {
       }
     }
     getInitialUsers();
-  }, [users]);
+  }, []);
+
+  function useOnClickOutside(ref, handler) {
+    useEffect(() => {
+      const listener = (event) => {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    }, [ref, handler]);
+  }
 
   const getUsers = async () => {
     try {
@@ -44,14 +64,16 @@ const Users = () => {
       const response = await axios.delete(
         `http://localhost:5432/deleteUser/${modalId}`
       );
-      // getUsers();
+      console.log(response);
       setShowDelete(false);
+      getUsers();
       handleToast("USER DELETED");
     } catch {
       console.error();
     }
   };
 
+  // Used function to get id's for now.
   const openModal = (id, type) => {
     setModalId(id);
     if (type === "edit") {
@@ -74,9 +96,9 @@ const Users = () => {
           <span className="toast">{toast}</span>
         </div>
       )}
+      <h1 className="users-title">Red Sky Coding Challenge</h1>
+      <div className="line-break" />
       <div className="wrapper">
-        <h1 className="users-title">Red Sky Coding Challenge</h1>
-        <div className="line-break" />
         <div className="createBtnCtn">
           <Button
             onClick={() => setShowCreateModal(!false)}
@@ -84,18 +106,7 @@ const Users = () => {
             text="CREATE NEW USER"
           />
         </div>
-        <div>
-          <UserList
-            users={users}
-            showEditModal={showEditModal}
-            setShowEditModal={setShowEditModal}
-            deleteUser={deleteUser}
-            getUsers={getUsers}
-            handleToast={handleToast}
-            setShowDelete={setShowDelete}
-            openModal={openModal}
-          />
-        </div>
+        <UserList users={users} openModal={openModal} />
         {showCreateModal && (
           <CreateUserModal
             setShowCreateModal={setShowCreateModal}

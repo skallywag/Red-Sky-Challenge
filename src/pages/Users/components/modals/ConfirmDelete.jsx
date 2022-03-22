@@ -1,12 +1,14 @@
 import React from "react";
-import Button from "../../../shared/Components/button/Button";
+import Button from "../../../../shared/Components/button/Button";
 import "./DeleteModal.scss";
 
-const ConfirmDelete = ({ setShowDelete, deleteUser, openModal }) => {
+const ConfirmDelete = ({ setShowDelete, deleteUser }) => {
   return (
     <div className="overLay">
-      <div className="delete-card">
-        <span>DELETE USER?</span>
+      <div className="delete-ctn">
+        <div className="title-ctn">
+          <h3 className="delete-title">DELETE USER?</h3>
+        </div>
         <div className="btn-ctn">
           {/* <div> */}
           <Button

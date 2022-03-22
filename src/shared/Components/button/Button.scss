@@ -1,36 +1,75 @@
 @import "../../../styles/variables";
 
+%btn-shared {
+}
 .default-btn {
   background-color: $primary;
   height: 36px;
   font-size: 18px;
   font-weight: 700;
   border-style: none;
-  background-color: $primary;
   color: #ffff;
   font-family: "Montserrat";
   font-style: normal;
   &:hover {
     cursor: pointer;
-    background-color: darkred;
+    background-color: rgb(175, 16, 16);
     transition: ease-in-out 0.3s;
   }
 }
-
-.outline-btn {
-  background-color: #ffff;
+.cancel-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 18px;
+  background-color: #ffffff;
   color: $primary;
-  border: 2px solid;
+  width: 138px;
+  height: 36px;
+  border: 2px solid $primary;
+  box-sizing: border-box;
   &:hover {
-    color: #ffff;
+    color: #ffffff;
   }
+}
+
+.small-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 18px;
+
+  width: 138px;
+  height: 36px;
 }
 
 .large-btn {
   background-color: $primary;
-  padding: 10px, 18px, 10px, 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 18px;
+  width: 226px;
+  height: 36px;
 }
 
-.confirm-dlte {
-  // margin-bottom: 20px;
+.edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  width: 62px;
+  height: 36px;
+}
+
+.delete-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 8px;
+  width: 92px;
+  height: 36px;
 }
