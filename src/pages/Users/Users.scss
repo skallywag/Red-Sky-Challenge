@@ -10,6 +10,7 @@
   font-family: "Marcellus";
   font-style: normal;
   padding: 10px;
+  border-bottom: 0.5px solid $gray;
 }
 .toast-ctn {
   display: flex;
@@ -23,11 +24,11 @@
     color: $white;
   }
 }
-.line-break {
-  border: 0.5px solid $gray;
-  border-bottom-width: 100%;
-  margin-bottom: 20px;
-}
+// .line-break {
+//   border: 0.5px solid $gray;
+//   border-bottom-width: 100%;
+//   margin-bottom: 20px;
+// }
 .createBtnCtn {
   display: flex;
   justify-content: flex-end;
