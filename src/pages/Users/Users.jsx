@@ -14,12 +14,13 @@ const Users = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [modalId, setModalId] = useState(null);
   const [toast, setToast] = useState("");
-  const ref = useRef();
-  useOnClickOutside(ref, () => setShowDelete(false));
+  // const ref = useRef();
+  // useOnClickOutside(ref, () => setShowDelete(false));
 
   useEffect(() => {
     async function getInitialUsers() {
       try {
+        // Saved to local storage.
         // const response = await axios.get("https://reqres.in/api/users?page=2");
         // setUsers(response.data.data)
         // localStorage.setItem("users", JSON.stringify(response.data));
@@ -32,23 +33,25 @@ const Users = () => {
     getInitialUsers();
   }, []);
 
-  function useOnClickOutside(ref, handler) {
-    useEffect(() => {
-      const listener = (event) => {
-        // Do nothing if clicking ref's element or descendent elements
-        if (!ref.current || ref.current.contains(event.target)) {
-          return;
-        }
-        handler(event);
-      };
-      document.addEventListener("mousedown", listener);
-      document.addEventListener("touchstart", listener);
-      return () => {
-        document.removeEventListener("mousedown", listener);
-        document.removeEventListener("touchstart", listener);
-      };
-    }, [ref, handler]);
-  }
+  // Was learning how i could set up an "offClick" event.
+
+  // function useOnClickOutside(ref, handler) {
+  //   useEffect(() => {
+  //     const listener = (event) => {
+  //       // Do nothing if clicking ref's element or descendent elements
+  //       if (!ref.current || ref.current.contains(event.target)) {
+  //         return;
+  //       }
+  //       handler(event);
+  //     };
+  //     document.addEventListener("mousedown", listener);
+  //     document.addEventListener("touchstart", listener);
+  //     return () => {
+  //       document.removeEventListener("mousedown", listener);
+  //       document.removeEventListener("touchstart", listener);
+  //     };
+  //   }, [ref, handler]);
+  // }
 
   const getUsers = async () => {
     try {

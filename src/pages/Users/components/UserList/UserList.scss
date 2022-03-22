@@ -3,10 +3,8 @@
 .container {
   max-width: 1075px;
   margin: 0 auto;
-  // background: lightgray;
   height: 100%;
   width: 100%;
-  // font-family: "Marcellus";
 }
 
 .user-list-ctn {
@@ -19,20 +17,16 @@
   align-items: center;
   background: $primary;
   height: 48px;
-  font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
   .table-title {
-    color: #ffffff;
+    color: $white;
+    font-family: $montserrat;
+    font-weight: 600;
+    text-transform: $textUppercase;
+    padding-left: 20px;
   }
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  vertical-align: middle;
-  padding-left: 20px;
 }
 
 .user-table {
@@ -41,30 +35,39 @@
   // border-collapse: separate;
   border-collapse: collapse;
 
+  .avatar {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    padding-left: 35px;
+  }
+  .avatar-title {
+    padding-left: 20px;
+  }
   .table-head {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid $gray;
     display: table-header-group;
     text-align: left;
     line-height: 50px;
     font-size: 18px;
     font-weight: 600;
-    vertical-align: middle;
+    // vertical-align: middle;
   }
+
   .tHead-row {
-    font-family: $secFont;
     color: $secondary;
-    text-transform: uppercase;
-    font-style: normal;
+    font-family: $montserrat;
+    text-transform: $textUppercase;
     font-weight: 600;
-    font-size: 18px;
+    // font-size: 18px;
   }
   .user-cell {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid $gray;
+    color: $secondary;
     &:last-child {
       border-bottom: none;
     }
   }
-
   .buttonCtn {
     display: flex;
     justify-content: flex-end;

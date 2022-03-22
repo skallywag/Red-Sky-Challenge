@@ -18,16 +18,17 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
     if (!values.lastName) {
       errors.lastName = "*Required";
     } else if (values.lastName.length < 3) {
-      errors.firstName = "Last Name must be more than 3 characters";
+      errors.lastName = "Last Name must be more than 3 characters";
     }
-
     if (!values.email) {
-      errors.lastName = "*Required";
+      errors.email = "*Required";
     } else if (!emailRegex.test(values.email)) {
       errors.email = "Please enter a valid email";
     }
     if (!values.avatar) {
       errors.avatar = "*Required";
+    } else if (values.avatar.length < 8) {
+      formik.errors.avatar = "Please enter an avatar link";
     }
     return errors;
   };
@@ -44,9 +45,8 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
           "http://localhost:5432/createUser",
           values
         );
-        console.log(response);
         setShowCreateModal(false);
-        handleToast("User Created!");
+        handleToast("USER CREATED!");
         getUsers();
       } catch {
         console.error();
@@ -59,15 +59,15 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
   return (
     <div className="overLay">
       <div className="modal-ctn">
-        <h3 className="title">Create New user</h3>
+        <h3 className="modal-title">Create New user</h3>
         <form onSubmit={formik.handleSubmit} className="modal-form">
           <label className="modal-label" htmlFor="firstName">
             First Name
           </label>
           <div>
-            {formik.errors.firstName && (
+            {formik.errors.firstName && formik.touched.firstName ? (
               <span className="input-error">{formik.errors.firstName}</span>
-            )}
+            ) : null}
             <input
               value={formik.values.firstName}
               onChange={formik.handleChange}
@@ -82,9 +82,9 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
             Last Name
           </label>
           <div>
-            {formik.errors.firstName && (
-              <span className="input-error">{formik.errors.firstName}</span>
-            )}
+            {formik.errors.lastName && formik.touched.lastName ? (
+              <span className="input-error">{formik.errors.lastName}</span>
+            ) : null}
             <input
               value={formik.values.lastName}
               onChange={formik.handleChange}
@@ -99,9 +99,9 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
             Email Address
           </label>
           <div>
-            {formik.errors.firstName && (
-              <span className="input-error">{formik.errors.firstName}</span>
-            )}
+            {formik.errors.email && formik.touched.email ? (
+              <span className="input-error">{formik.errors.email}</span>
+            ) : null}
             <input
               value={formik.values.email}
               onChange={formik.handleChange}
@@ -116,9 +116,9 @@ const CreateUserModal = ({ setShowCreateModal, getUsers, handleToast }) => {
             Avatar Image Link
           </label>
           <div>
-            {formik.errors.firstName && (
-              <span className="input-error">{formik.errors.firstName}</span>
-            )}
+            {formik.errors.avatar && formik.touched.avatar ? (
+              <span className="input-error">{formik.errors.avatar}</span>
+            ) : null}
             <input
               value={formik.values.avatar}
               onChange={formik.handleChange}
