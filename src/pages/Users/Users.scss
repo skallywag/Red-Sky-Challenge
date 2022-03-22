@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+.users-title {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 58px;
+  font-family: "Marcellus";
+  font-style: normal;
+  padding: 10px;
+}
+.toast-ctn {
+  display: flex;
+  justify-content: center;
+  .toast {
+    position: absolute;
+    top: 200px;
+    // left: ;
+    background-color: $primary;
+    // border-radius: 10px;
+    font-size: 18px;
+    padding: 8px 30px;
+    color: white;
+  }
+}
+.line-break {
+  border-bottom: 1px solid $gray;
+  border-bottom-width: 100%;
+  margin-bottom: 20px;
+}
+.createBtnCtn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 0 20px;
+}
+.create-user {
+  background: $primary;
+  border-style: none;
+  width: 226px;
+  height: 36px;
+  cursor: pointer;
+  color: #ffff;
+  &:hover {
+    background-color: darkred;
+    transition: ease-in-out 0.3s;
+  }
+}

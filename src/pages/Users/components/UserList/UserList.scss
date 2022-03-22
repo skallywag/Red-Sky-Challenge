@@ -1,0 +1,71 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+  max-width: 1075px;
+  margin: 0 auto;
+  // background: lightgray;
+  height: 100%;
+  width: 100%;
+  // font-family: "Marcellus";
+}
+
+.user-list-ctn {
+  border: 1px solid #dd013f;
+  box-sizing: border-box;
+}
+
+.table-title {
+  display: flex;
+  align-items: center;
+  background: $primary;
+  height: 48px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  padding-left: 20px;
+}
+
+.user-table {
+  width: 100%;
+  // table-layout: fixed;
+  // border-collapse: separate;
+  border-collapse: collapse;
+
+  .table-head {
+    border-bottom: 1px solid gray;
+    display: table-header-group;
+    text-align: left;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  .tHead-row {
+    font-family: $secFont;
+    color: $secondary;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .user-cell {
+    border-bottom: 1px solid gray;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .buttonCtn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 10px;
+  }
+}
